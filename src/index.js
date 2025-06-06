@@ -1,8 +1,11 @@
 const express = require('express')
 const cors = require('cors')
 
+require('dotenv').config()
+
 const app = express()
 const logger = require('../loggerMiddleware')
+const usersRouter = require('./routes/users.routes')
 
 app.use(cors())
 app.use(express.json())
@@ -11,6 +14,8 @@ app.use(logger)
 app.get('/', (req, res) => {
   res.send('<h1>Hello World!</h1>')
 })
+
+app.use('/api/users', usersRouter)
 
 app.use((req, res) => {
   res.status(404).json({
