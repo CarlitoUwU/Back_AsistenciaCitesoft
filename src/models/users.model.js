@@ -51,10 +51,25 @@ async function deleteUser (id) {
   await db.query('DELETE FROM users WHERE id = $1', [id])
 }
 
+async function findByEmail (email) {
+  const result = await db.query('SELECT * FROM users WHERE email = $1', [email])
+  if (result.rows.length === 0) return null
+  const row = result.rows[0]
+  const user = new User()
+  user.id = row.id
+  user.firstName = row.first_name
+  user.lastName = row.last_name
+  user.isActive = row.is_active
+  user.email = row.email
+  user.role = row.role
+  return user
+}
+
 module.exports = {
   getAllUsers,
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  findByEmail
 }
