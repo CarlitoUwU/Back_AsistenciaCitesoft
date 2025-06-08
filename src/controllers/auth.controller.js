@@ -1,18 +1,16 @@
 exports.googleRedirect = (req, res) => {
   const token = req.user?.token
   if (token) {
-    res.send(`
-      <script>
-        window.opener.postMessage(${JSON.stringify({ token })}, "*");
-        window.close();
-      </script>
-    `)
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // Solo por HTTPS en prod
+      sameSite: 'Lax',
+      maxAge: 60 * 60 * 1000 // 1 hora
+    })
+
+    // Redirige al frontend o cierra popup
+    res.redirect(process.env.FRONTEND_REDIRECT || '/')
   } else {
-    res.send(`
-      <script>
-        window.opener.postMessage(${JSON.stringify({ error: 'error_authenticating' })}, "*");
-        window.close();
-      </script>
-    `)
+    res.redirect('/login-failed')
   }
 }

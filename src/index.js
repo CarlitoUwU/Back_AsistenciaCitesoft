@@ -1,7 +1,7 @@
 const express = require('express')
-const session = require('express-session')
 const passport = require('passport')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 require('dotenv').config()
 require('./config/passport')
@@ -9,20 +9,14 @@ require('./config/passport')
 const authRoutes = require('./routes/auth.routes')
 
 const app = express()
-const logger = require('../loggerMiddleware')
+const logger = require('./middleware/loggerMiddleware')
 const usersRouter = require('./routes/users.routes')
 
 app.use(cors())
+app.use(cookieParser())
+app.use(passport.initialize())
 app.use(express.json())
 app.use(logger)
-
-app.use(session({
-  secret: 'una_clave_secreta',
-  resave: false,
-  saveUninitialized: true
-}))
-app.use(passport.initialize())
-app.use(passport.session())
 
 app.use('/auth', authRoutes)
 
