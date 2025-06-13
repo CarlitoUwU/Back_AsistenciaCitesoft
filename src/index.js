@@ -7,10 +7,11 @@ require('dotenv').config()
 require('./config/passport')
 
 const authRoutes = require('./routes/auth.routes')
+const usersRouter = require('./routes/users.routes')
+const attendanceRouter = require('./routes/attendance.routes')
 
 const app = express()
 const logger = require('./middleware/loggerMiddleware')
-const usersRouter = require('./routes/users.routes')
 
 app.use(cors())
 app.use(cookieParser())
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', usersRouter)
+app.use('/api/attendance', attendanceRouter)
 
 app.use((req, res) => {
   res.status(404).json({

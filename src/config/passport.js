@@ -27,7 +27,8 @@ async (accessToken, refreshToken, profile, done) => {
     // Usuario registrado, generar token
     const token = jwt.sign({
       email: user.email,
-      role: user.role
+      role: user.role,
+      id: user.id
     }, process.env.JWT_SECRET, {
       expiresIn: '1h'
     })
