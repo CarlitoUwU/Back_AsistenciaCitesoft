@@ -2,6 +2,8 @@ const express = require('express')
 const passport = require('passport')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const swaggerUi = require('swagger-ui-express')
+const swaggerSpec = require('./config/swagger')
 
 require('dotenv').config()
 require('./config/passport')
@@ -12,6 +14,8 @@ const attendanceRouter = require('./routes/attendance.routes')
 
 const app = express()
 const logger = require('./middleware/loggerMiddleware')
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.use(cors())
 app.use(cookieParser())
@@ -40,7 +44,7 @@ app.get('/login-failed', (req, res) => {
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
-  // console.clear();
+  console.clear()
   console.log(`Server running on port ${PORT}`)
   console.log(`Enlace a la aplicación: http://localhost:${PORT}`)
   console.log('-----------------------------------------------')
