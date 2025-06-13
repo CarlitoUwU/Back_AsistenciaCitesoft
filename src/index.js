@@ -2,8 +2,6 @@ const express = require('express')
 const passport = require('passport')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const swaggerUi = require('swagger-ui-express')
-const swaggerSpec = require('./config/swagger')
 
 require('dotenv').config()
 require('./config/passport')
@@ -16,7 +14,6 @@ const swaggerRoutes = require('./routes/swagger.routes')
 const app = express()
 const logger = require('./middleware/loggerMiddleware')
 
-// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 const path = require('path')
 
 app.get('/api-docs', (req, res) => {
