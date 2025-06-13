@@ -1,4 +1,4 @@
-const db = require('../config/db') // conexión pg
+const db = require('../config/db')
 const User = require('./user')
 
 async function getAllUsers () {
