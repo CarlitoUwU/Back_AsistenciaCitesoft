@@ -16,6 +16,7 @@ const { googleRedirect } = require('../controllers/auth.controller')
  *   get:
  *     summary: Iniciar autenticación con Google
  *     tags: [Auth]
+ *     security: []
  *     responses:
  *       302:
  *         description: Redirige a la página de autenticación de Google
@@ -27,6 +28,7 @@ const { googleRedirect } = require('../controllers/auth.controller')
  *   get:
  *     summary: Redirección después de autenticación con Google
  *     tags: [Auth]
+ *     security: []
  *     responses:
  *       200:
  *         description: Autenticación exitosa y redirige al cliente
