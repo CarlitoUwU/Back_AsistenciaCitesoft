@@ -12,8 +12,7 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
   try {
-    const id = req.params.id || req.user.id
-    const attendance = await attendanceModel.getAttendanceById(id)
+    const attendance = await attendanceModel.getAttendanceById(req.params.id)
     if (!attendance) return res.status(404).json({ error: 'Attendance not found' })
     res.json(attendance)
   } catch (error) {
@@ -22,7 +21,7 @@ exports.getById = async (req, res) => {
   }
 }
 
-exports.create = async (req, res) => {
+exports.entry = async (req, res) => {
   try {
     const userId = req.user.id
     const newAttendance = await attendanceModel.createAttendance(userId)
@@ -33,7 +32,7 @@ exports.create = async (req, res) => {
   }
 }
 
-exports.update = async (req, res) => {
+exports.exit = async (req, res) => {
   try {
     const userId = req.user.id
     const updatedAttendance = await attendanceModel.markAttendance(userId)
@@ -46,7 +45,8 @@ exports.update = async (req, res) => {
 
 exports.getAttendancesByUserId = async (req, res) => {
   try {
-    const attendances = await attendanceModel.getAttendancesByUserId(req.user.id)
+    const id = req.user.id || req.params.id
+    const attendances = await attendanceModel.getAttendancesByUserId(id)
     if (!attendances) return res.status(404).json({ error: 'No attendances found for user' })
     res.json(attendances)
   } catch (error) {
@@ -57,7 +57,8 @@ exports.getAttendancesByUserId = async (req, res) => {
 
 exports.getAttendancesByUserIdHoy = async (req, res) => {
   try {
-    const attendances = await attendanceModel.getAttendancesByUserIdHoy(req.user.id)
+    const id = req.user.id || req.params.id
+    const attendances = await attendanceModel.getAttendancesByUserIdHoy(id)
     if (!attendances) return res.status(404).json({ error: 'No attendances found for today' })
     res.json(attendances)
   } catch (error) {

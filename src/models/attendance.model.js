@@ -20,10 +20,10 @@ async function getAttendanceById (id) {
   const row = result.rows[0]
   const attendance = new Attendance()
   attendance.id = row.id
-  attendance.userId = row.userId
+  attendance.user_id = row.user_id
   attendance.weekday = row.weekday
-  attendance.horaInit = row.horaInit
-  attendance.horaFin = row.horaFin
+  attendance.hora_init = row.hora_init
+  attendance.hora_fin = row.hora_fin
   return attendance
 }
 
@@ -57,10 +57,10 @@ async function getAttendancesByUserIdHoy (userId) {
   return result.rows.map(row => {
     const attendance = new Attendance()
     attendance.id = row.id
-    attendance.userId = row.userId
+    attendance.user_id = row.user_id
     attendance.weekday = row.weekday
-    attendance.horaInit = row.horaInit
-    attendance.horaFin = row.horaFin
+    attendance.hora_init = row.hora_init
+    attendance.hora_fin = row.hora_fin
     return attendance
   })
 }
@@ -90,14 +90,14 @@ async function deleteAttendance (id) {
 }
 
 async function getAttendancesByUserId (userId) {
-  const result = await db.query('SELECT * FROM attendance WHERE userId = $1', [userId])
+  const result = await db.query('SELECT * FROM attendance WHERE user_id = $1', [userId])
   return result.rows.map(row => {
     const attendance = new Attendance()
     attendance.id = row.id
-    attendance.userId = row.userId
+    attendance.user_id = row.user_id
     attendance.weekday = row.weekday
-    attendance.horaInit = row.horaInit
-    attendance.horaFin = row.horaFin
+    attendance.hora_init = row.hora_init
+    attendance.hora_fin = row.hora_fin
     return attendance
   })
 }
