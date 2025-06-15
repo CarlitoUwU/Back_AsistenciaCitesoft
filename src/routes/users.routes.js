@@ -40,12 +40,13 @@ const verifyToken = require('../middleware/authMiddleware')
  *       404:
  *         description: Usuario no encontrado
  */
-
+// const { firstName, lastName, email, role, isActive = true } = data
+// const result = await db.query(
 /**
  * @swagger
  * /api/users:
  *   post:
- *     summary: Crear un nuevo user
+ *     summary: Crear un nuevo usuario
  *     tags: [Users]
  *     requestBody:
  *       required: true
@@ -53,13 +54,22 @@ const verifyToken = require('../middleware/authMiddleware')
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *               - email
+ *               - role
  *             properties:
- *               nombre:
+ *               firstName:
  *                 type: string
- *               correo:
+ *               lastName:
  *                 type: string
- *               rol:
+ *               email:
  *                 type: string
+ *               role:
+ *                 type: string
+ *               isActive:
+ *                 type: boolean
  *     responses:
  *       201:
  *         description: Usuario creado exitosamente
@@ -86,13 +96,22 @@ const verifyToken = require('../middleware/authMiddleware')
  *         application/json:
  *           schema:
  *             type: object
+ *             required:
+ *               - firstName
+ *               - lastName
+ *               - email
+ *               - role
  *             properties:
- *               nombre:
+ *               firstName:
  *                 type: string
- *               correo:
+ *               lastName:
  *                 type: string
- *               rol:
+ *               email:
  *                 type: string
+ *               role:
+ *                 type: string
+ *               isActive:
+ *                 type: boolean
  *     responses:
  *       200:
  *         description: Usuario actualizado correctamente

@@ -12,7 +12,8 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
   try {
-    const attendance = await attendanceModel.getAttendanceById(req.params.id)
+    const id = req.params.id || req.user.id
+    const attendance = await attendanceModel.getAttendanceById(id)
     if (!attendance) return res.status(404).json({ error: 'Attendance not found' })
     res.json(attendance)
   } catch (error) {
@@ -24,7 +25,7 @@ exports.getById = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const userId = req.user.id
-    const newAttendance = await attendanceModel.createAttendance(req.body, userId)
+    const newAttendance = await attendanceModel.createAttendance(userId)
     res.status(201).json(newAttendance)
   } catch (error) {
     console.error('Error creating attendance:', error)
@@ -35,7 +36,7 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
   try {
     const userId = req.user.id
-    const updatedAttendance = await attendanceModel.markAttendance(userId, req.body)
+    const updatedAttendance = await attendanceModel.markAttendance(userId)
     res.json(updatedAttendance)
   } catch (error) {
     console.error('Error updating attendance:', error)

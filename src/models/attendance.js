@@ -3,7 +3,7 @@ const { WEEKDAY_LIST } = require('../constantes/weekday')
 class Attendance {
   constructor () {
     this.id = null
-    this.usuario_id = ''
+    this.user_id = ''
     this.weekday = ''
     this.hora_init = ''
     this.hora_fin = ''

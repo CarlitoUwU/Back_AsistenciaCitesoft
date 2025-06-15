@@ -2,7 +2,7 @@ const db = require('../config/db')
 const User = require('./user')
 
 async function getAllUsers () {
-  const result = await db.query('SELECT * FROM users')
+  const result = await db.query('SELECT * FROM users WHERE role = $1', ['ESTUDIANTE'])
   return result.rows.map(row => {
     const user = new User()
     user.id = row.id

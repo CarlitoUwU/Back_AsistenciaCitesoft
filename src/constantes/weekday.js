@@ -1,11 +1,11 @@
 const WEEKDAY = {
-  MONDAY: 'monday',
-  TUESDAY: 'tuesday',
-  WEDNESDAY: 'wednesday',
-  THURSDAY: 'thursday',
-  FRIDAY: 'friday',
-  SATURDAY: 'saturday',
-  SUNDAY: 'sunday'
+  MONDAY: 'MONDAY',
+  TUESDAY: 'TUESDAY',
+  WEDNESDAY: 'WEDNESDAY',
+  THURSDAY: 'THURSDAY',
+  FRIDAY: 'FRIDAY',
+  SATURDAY: 'SATURDAY',
+  SUNDAY: 'SUNDAY'
 }
 
 const WEEKDAY_LIST = Object.values(WEEKDAY)
