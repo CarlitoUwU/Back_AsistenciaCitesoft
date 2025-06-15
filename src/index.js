@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
@@ -10,7 +11,6 @@ const attendanceRouter = require('./routes/attendance.routes')
 const swaggerRoutes = require('./routes/swagger.routes')
 const path = require('path')
 
-require('dotenv').config()
 require('./config/passport')
 
 const app = express()
